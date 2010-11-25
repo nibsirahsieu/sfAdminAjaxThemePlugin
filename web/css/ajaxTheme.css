@@ -1,0 +1,33 @@
+#ajaxThemeLoader {
+  display:none;
+  position: fixed;
+  top:0;
+  left:50%;
+  z-index:3000;
+  color: #000000;
+  padding: 4px 7px;
+  background: none repeat scroll 0 0 #FFF1A8;
+  font-weight: bold;
+  font-size: 13px;
+  text-align: center;
+}
+
+#ajaxThemeConfirmation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  font: normal 1.4em arial;
+  line-height: 60px;
+  text-align: center;
+  color: #000;
+  border-bottom: 1px solid #ddd;
+  filter:alpha(opacity=92);
+  -moz-opacity: 0.92;
+  opacity: 0.92;
+  display: none; /* LEAVE THIS IN*/
+}
+
+#ajaxThemeConfirmation.notice {background: #FFF1A8; }
+#ajaxThemeConfirmation.error {color: #fff; background: #CC0000;}
