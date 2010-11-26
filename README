@@ -3,6 +3,10 @@
 The `sfAdminAjaxThemePlugin` is a symfony plugin to ajaxify symfony admin generator.
 This plugin comes with two themes, ajaxtheme for propel 1.4 (sfPropelPlugin) and ajaxtheme15 for propel 1.5 (sfPropel15Plugin)
 
+## Screenshot ##
+
+http://img7.imageshack.us/g/screenshot5j0.png/
+
 ## Installation ##
   * Add the jQuery libary plugin  in your `view.yml`
 
