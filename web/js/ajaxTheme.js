@@ -28,6 +28,8 @@ function getJSONAjaxResponse(type, url, data) {
         if ($('#ajaxtheme_list').length == 0) window.location.href = response.redirectToUrl;
         showMessage(response.msg, response.type);
         getHTMLAjaxResponse('GET', response.redirectToUrl, {})
+      } else {
+        showMessage(response.msg, response.type);
       }
     },
     error:function(XMLHttpRequest, textStatus, errorThrown) {}
