@@ -18,7 +18,6 @@
 
       $response['redirectToUrl'] = $this->getController()->genUrl('@<?php echo $this->getUrlForAction('list') ?>');
       return $this->renderText(json_encode($response));
-      
     } else {
       $this->redirect('@<?php echo $this->getUrlForAction('list') ?>');
     }
