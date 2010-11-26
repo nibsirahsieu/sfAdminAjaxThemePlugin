@@ -22,7 +22,7 @@
     if (!$action = $request->getParameter('batch_action'))
     {
       if ($request->isXmlHttpRequest()) {
-        $response['msg'] = 'You must at least select one item.';
+        $response['msg'] = 'You must select an action to execute on the selected items.';
         return $this->renderText(json_encode($response));
       } else {
         $this->getUser()->setFlash('error', 'You must select an action to execute on the selected items.');
