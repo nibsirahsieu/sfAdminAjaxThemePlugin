@@ -33,7 +33,7 @@
     {
       if ($ajaxify == 1) {
         $results['type'] = 'error';
-        $results['message'] = 'The item has not been saved due to some errors.';
+        $results['message'] = __('The item has not been saved due to some errors.', array(), 'sf_admin');
         $this->collectFormErrors($form->getFormFieldSchema(), $results['errs']);
       } else {
         $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.', false);

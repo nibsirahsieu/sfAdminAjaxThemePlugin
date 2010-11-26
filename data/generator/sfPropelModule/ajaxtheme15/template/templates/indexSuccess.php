@@ -39,10 +39,10 @@
 </div>
 [?php if ($sf_user->hasFlash('notice') || $sf_user->hasFlash('error')): ?]
   [?php if ($sf_user->hasFlash('notice')): ?]
-    [?php $message = $sf_user->getFlash('notice') ?]
+    [?php $message = __($sf_user->getFlash('notice'), array(), 'sf_admin') ?]
     [?php $class = 'notice' ?]
   [?php elseif ($sf_user->hasFlash('error')): ?]
-    [?php $message = $sf_user->getFlash('error') ?]
+    [?php $message = __($sf_user->getFlash('error'), array(), 'sf_admin') ?]
     [?php $class = 'error' ?]
   [?php endif; ?]
   <script type="text/javascript">

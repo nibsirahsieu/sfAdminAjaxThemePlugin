@@ -1,6 +1,7 @@
   public function executeBatch(sfWebRequest $request)
   {
     if ($request->isXmlHttpRequest()) {
+      sfProjectConfiguration::getActive()->loadHelpers(array('I18N'));
       sfConfig::set('sf_web_debug', false);
       $this->getResponse()->setContentType('application/json');
       $response = array('type' => 'error', 'msg' => '');
@@ -11,7 +12,7 @@
     if (!$ids = $request->getParameter('ids'))
     {
       if ($request->isXmlHttpRequest()) {
-        $response['msg'] = 'You must at least select one item.';
+        $response['msg'] = __('You must at least select one item.', array(), 'sf_admin');
         return $this->renderText(json_encode($response));
       } else {
         $this->getUser()->setFlash('error', 'You must at least select one item.');
@@ -22,7 +23,7 @@
     if (!$action = $request->getParameter('batch_action'))
     {
       if ($request->isXmlHttpRequest()) {
-        $response['msg'] = 'You must select an action to execute on the selected items.';
+        $response['msg'] = __('You must select an action to execute on the selected items.', array(), 'sf_admin');
         return $this->renderText(json_encode($response));
       } else {
         $this->getUser()->setFlash('error', 'You must select an action to execute on the selected items.');
@@ -52,7 +53,7 @@
     catch (sfValidatorError $e)
     {
       if ($request->isXmlHttpRequest()) {
-        $response['msg'] = 'A problem occurs when deleting the selected items as some items do not exist anymore.';
+        $response['msg'] = __('A problem occurs when deleting the selected items as some items do not exist anymore.', array(), 'sf_admin');
         return $this->renderText(json_encode($response));
       } else {
         $this->getUser()->setFlash('error', 'A problem occurs when deleting the selected items as some items do not exist anymore.');
@@ -65,6 +66,7 @@
   protected function executeBatchDelete(sfWebRequest $request)
   {
     if ($request->isXmlHttpRequest()) {
+      sfProjectConfiguration::getActive()->loadHelpers(array('I18N'));
       sfConfig::set('sf_web_debug', false);
       $this->getResponse()->setContentType('application/json');
       $response = array('type' => 'error', 'msg' => '');
@@ -88,7 +90,7 @@
     {
       if ($request->isXmlHttpRequest()) {
         $response['type'] = 'notice';
-        $response['msg'] = 'The selected items have been deleted successfully.';
+        $response['msg'] = __('The selected items have been deleted successfully.', array(), 'sf_admin');
       } else {
         $this->getUser()->setFlash('notice', 'The selected items have been deleted successfully.');
       }
@@ -96,7 +98,7 @@
     else
     {
       if ($request->isXmlHttpRequest()) {
-        $response['msg'] = 'A problem occurs when deleting the selected items.';
+        $response['msg'] = __('A problem occurs when deleting the selected items.', array(), 'sf_admin');
       } else {
         $this->getUser()->setFlash('error', 'A problem occurs when deleting the selected items.');
       }
