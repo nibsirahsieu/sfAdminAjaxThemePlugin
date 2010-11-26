@@ -31,6 +31,7 @@ http://img7.imageshack.us/g/screenshot5j0.png/
         $ symfony cc
 
   * Publish the plugin's assets:
+
         ./symfony plugin:publish-assets
 
 ## How to use ##
