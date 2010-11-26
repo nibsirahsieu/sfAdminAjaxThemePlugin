@@ -32,6 +32,7 @@
     else
     {
       if ($ajaxify == 1) {
+        sfProjectConfiguration::getActive()->loadHelpers(array('I18N'));
         $results['type'] = 'error';
         $results['message'] = __('The item has not been saved due to some errors.', array(), 'sf_admin');
         $this->collectFormErrors($form->getFormFieldSchema(), $results['errs']);
