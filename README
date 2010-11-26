@@ -40,7 +40,13 @@ http://img7.imageshack.us/g/screenshot5j0.png/
 
   * If you already have an admin generator, you can simply change the theme inside your `generator.yml`, then clear your cache.
 
-        theme: ajaxtheme15
+        theme: ajaxtheme15 #ajaxtheme if you are using sfPropelPlugin
+
+  * By default, this plugin come with jquery form plugin [http://malsup.com/jquery/form/], if you already have it and want to use your own, add below to your `app.yml`. For example:
+
+        [yml]
+        all:
+          jquery_form_dir: /js/jquery.form.js
 
 That's it! You are ready now to use your new admin generator theme.
 
