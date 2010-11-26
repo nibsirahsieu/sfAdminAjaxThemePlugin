@@ -9,7 +9,7 @@ $(function() {
   //taken from https://gist.github.com/raw/358429
   $(window).bind( 'hashchange', function(e) {
     params = e.fragment; // pre-jQuery1.4: $.deparam.fragment(document.location.href);
-    getHTMLAjaxResponse('GET', $.param.querystring(baseurl, params), {});
+    if (params) getHTMLAjaxResponse('GET', $.param.querystring(baseurl, params), {});
   });
 
   if (location.hash) $(window).trigger('hashchange');
@@ -31,7 +31,7 @@ $(function() {
   });
 
   $('#sf_admin_bar').delegate('form tfoot td a', 'click', function(e) {
-    location.hash = '';
+    location.hash = '#';
     return getHTMLAjaxResponse('GET', this.href, {});
   });
 });
