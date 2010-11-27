@@ -12,7 +12,7 @@
         <tr>
           <td colspan="2">
             [?php echo $form->renderHiddenFields() ?]
-            [?php echo link_to(__('Reset', array(), 'sf_admin'), '<?php echo $this->getUrlForAction('collection') ?>', array('action' => 'filter'), array('query_string' => '_reset', 'class' => 'filter-reset')) ?]
+            [?php echo link_to(__('Reset', array(), 'sf_admin'), '<?php echo $this->getUrlForAction('collection') ?>', array('action' => 'filter'), array('query_string' => '_reset', 'class' => 'ajaxtheme_reset')) ?]
             <input type="submit" value="[?php echo __('Filter', array(), 'sf_admin') ?]" />
           </td>
         </tr>
