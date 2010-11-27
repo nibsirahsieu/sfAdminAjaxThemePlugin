@@ -1,42 +1,70 @@
 /*live version*/
-$(window).bind('load', function() {
-  var formFilter = $('#sf_admin_bar form');
-  var formBatch = $('#sf_admin_content form');
-  var baseurl = location.protocol + '//' + location.host + location.pathname;
+var ajaxThemeList = {
+  init: function(settings) {
+    ajaxThemeList.settings = {
+      $listContainer: jQuery('#ajaxtheme_list'),
+      pageClass: 'ajaxtheme_page',
+      sortClass: 'ajaxtheme_sort',
+      $formBatch: jQuery('#sf_admin_content form'),
+      $filterContainer: jQuery('#sf_admin_bar'),
+      resetClass: 'ajaxtheme_reset',
+      baseURL: location.protocol + '//' + location.host + location.pathname
+    };
+    jQuery.extend(ajaxThemeList.settings, settings);
+    ajaxThemeList.onReady();
 
+    /*taken from https://gist.github.com/raw/358429*/
+    jQuery(window).bind( 'hashchange', function(e) {
+      var settings = ajaxThemeList.settings;
+      var params = e.fragment;
+      if (params) getHTMLAjaxResponse('GET', jQuery.param.querystring(settings.baseURL, params), {}, settings.$listContainer, settings.$filterContainer);
+    });
+
+    if (window.location.hash) jQuery(window).trigger('hashchange');
+
+  },
+  onReady : function() {
+    ajaxThemeList.livePaginationAndSorting();
+    ajaxThemeList.liveBatchAction();
+    ajaxThemeList.liveFormFilter();
+  },
+
+  livePaginationAndSorting: function () {
+    var settings = ajaxThemeList.settings;
+    settings.$listContainer.find("a[class="+settings.pageClass+"], a[class="+settings.sortClass+"]").live('click', function(e) {
+      var params = jQuery.deparam.querystring(this.href);
+      var new_url = jQuery.param.fragment(settings.baseURL, params, 2);
+      window.location.hash = jQuery.param.fragment( new_url );
+      return false;
+    });
+  },
+  liveBatchAction: function() {
+    var formBatch = ajaxThemeList.settings.$formBatch;
+    if (formBatch.length > 0) {
+      formBatch.find('input[type=submit]').live('click', function(e) {
+        return getJSONAjaxResponse('POST', formBatch.attr('action'), formBatch.serialize(), ajaxThemeList.settings.$listContainer);
+      });
+    }
+  },
+  liveFormFilter: function() {
+    var settings = ajaxThemeList.settings;
+    if (settings.$filterContainer.length > 0) {
+      var formFilter = settings.$filterContainer.find('form');
+      formFilter.find('input[type=submit]').live('click', function(e) {
+        e.preventDefault(); //should be here, to enable event delegation
+        window.location.hash = '#';
+        return getHTMLAjaxResponse('POST', formFilter.attr('action'), formFilter.serialize(), settings.$listContainer);
+      });
+      formFilter.find('a[class='+settings.resetClass+']').live('click', function(e) {
+        e.preventDefault();
+        window.location.hash = '#';
+        return getHTMLAjaxResponse('GET', this.href, {}, settings.$listContainer, settings.$filterContainer);
+      });
+    }
+  }
+};
+
+jQuery(document).ready(function() {
+  ajaxThemeList.init();
   showIndicator();
-
-  //taken from https://gist.github.com/raw/358429
-  $(window).bind( 'hashchange', function(e) {
-    params = e.fragment; // pre-jQuery1.4: $.deparam.fragment(document.location.href);
-    if (params) getHTMLAjaxResponse('GET', $.param.querystring(baseurl, params), {});
-  });
-
-  if (location.hash) $(window).trigger('hashchange');
-  
-  //pagination and sorting
-  $('#ajaxtheme_list .sf_admin_pagination a, #ajaxtheme_list thead th[class*=sf_admin_list_th_] a').live('click', function(e) {
-    params = $.deparam.querystring(this.href);
-    new_url = $.param.fragment(baseurl, params, 2);
-    location.hash = $.param.fragment( new_url );
-    return false;
-  });
-
-  //batch action
-  $('#sf_admin_content form input[type=submit]').live('click', function(e) {
-    return getJSONAjaxResponse('POST', formBatch.attr('action'), formBatch.serialize());
-  });
-
-  //---FILTER FORM ---
-  /*submit*/
-  $('#sf_admin_bar form input[type=submit]').live('click', function(e) {
-    location.hash = '#';
-    return getHTMLAjaxResponse('POST', formFilter.attr('action'), formFilter.serialize());
-  });
-
-  /*reset*/
-  $('#sf_admin_bar form tfoot td a').live('click', function(e) {
-    location.hash = '#';
-    return getHTMLAjaxResponse('GET', this.href, {});
-  });
 });
