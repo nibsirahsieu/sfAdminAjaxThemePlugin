@@ -49,13 +49,12 @@ var ajaxThemeList = {
   liveFormFilter: function() {
     var settings = ajaxThemeList.settings;
     if (settings.$filterContainer.length > 0) {
-      var formFilter = settings.$filterContainer.find('form');
-      formFilter.find('input[type=submit]').live('click', function(e) {
-        e.preventDefault(); //should be here, to enable event delegation
+      settings.$filterContainer.find('input[type=submit]').live('click', function(e) {
+        e.preventDefault(); 
         window.location.hash = '#';
-        return getHTMLAjaxResponse('POST', formFilter.attr('action'), formFilter.serialize(), settings.$listContainer);
+        return getHTMLAjaxResponse('POST', settings.$filterContainer.find('form').attr('action'), settings.$filterContainer.find('form').serialize(), settings.$listContainer);
       });
-      formFilter.find('a[class='+settings.resetClass+']').live('click', function(e) {
+      settings.$filterContainer.find('a[class='+settings.resetClass+']').live('click', function(e) {
         e.preventDefault();
         window.location.hash = '#';
         return getHTMLAjaxResponse('GET', this.href, {}, settings.$listContainer, settings.$filterContainer);
