@@ -18,7 +18,7 @@ abstract class Base<?php echo ucfirst($this->getModuleName()) ?>GeneratorHelper 
   {
     $link = parent::linkToDelete($object, $param);
     if ($link != '') {
-      $link = str_replace('f.submit()', 'getJSONAjaxResponse(\'POST\', this.href, jQuery(f).serialize(), ajaxThemeList.settings.$listContainer)', $link);
+      $link = str_replace('f.submit()', 'getJSONAjaxResponse(\'POST\', this.href, jQuery(f).serialize(), jQuery(\'#ajaxtheme_list\'))', $link);
     }
     return $link;
   }
