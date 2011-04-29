@@ -62,8 +62,3 @@ var ajaxThemeList = {
     }
   }
 };
-
-jQuery(document).ready(function() {
-  ajaxThemeList.init();
-  showIndicator();
-});
