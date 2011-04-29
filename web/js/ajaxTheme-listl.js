@@ -7,7 +7,6 @@ var ajaxThemeList = {
       sortClass: 'ajaxtheme_sort',
       $formBatch: jQuery('#sf_admin_content form'),
       $filterContainer: jQuery('#sf_admin_bar'),
-      resetClass: 'ajaxtheme_reset',
       baseURL: location.protocol + '//' + location.host + location.pathname
     };
     jQuery.extend(ajaxThemeList.settings, settings);
@@ -53,11 +52,6 @@ var ajaxThemeList = {
         e.preventDefault(); 
         window.location.hash = '#';
         return getHTMLAjaxResponse('POST', settings.$filterContainer.find('form').attr('action'), settings.$filterContainer.find('form').serialize(), settings.$listContainer);
-      });
-      settings.$filterContainer.find('a[class='+settings.resetClass+']').live('click', function(e) {
-        e.preventDefault();
-        window.location.hash = '#';
-        return getHTMLAjaxResponse('GET', this.href, {}, settings.$listContainer, settings.$filterContainer);
       });
     }
   }
