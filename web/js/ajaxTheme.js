@@ -1,5 +1,5 @@
 function getHTMLAjaxResponse(type, url, data, lst, flt) {
-  $.ajax({
+  jQuery.ajax({
     type:type,
     url: url,
     data:data,
@@ -17,7 +17,7 @@ function getHTMLAjaxResponse(type, url, data, lst, flt) {
 }
 
 function getJSONAjaxResponse(type, url, data, lst) {
-  $.ajax({
+  jQuery.ajax({
     type:type,
     dataType: 'json',
     url: url,
@@ -38,13 +38,13 @@ function getJSONAjaxResponse(type, url, data, lst) {
 }
 
 function showMessage(msg, cls) {
-  $('#ajaxThemeConfirmation').removeClass('error notice').addClass(cls).html(msg).appendTo('body').delay(400).slideDown(400).delay(3000).slideUp(400);
+  jQuery('#ajaxThemeConfirmation').removeClass('error notice').addClass(cls).html(msg).appendTo('body').delay(400).slideDown(400).delay(3000).slideUp(400);
 }
 
 function showIndicator() {
-  $('<div id="ajaxThemeLoader">Loading...</div>').ajaxStart(function() {
-    $(this).show();
+  jQuery('<div id="ajaxThemeLoader">Loading...</div>').ajaxStart(function() {
+    jQuery(this).show();
   }).ajaxStop(function() {
-    $(this).hide();
+    jQuery(this).hide();
   }).appendTo('body');
 }

@@ -32,7 +32,7 @@
 [?php endif; ?]
 <script type="text/javascript">
 /* <![CDATA[ */
-$(function() {
+jQuery(function() {
   new setupAjaxForm('<?php echo $this->getModuleName() ?>-form');
 });
 /* ]]> */

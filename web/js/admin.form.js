@@ -5,7 +5,7 @@ function setupAjaxForm(form_id, form_validations){
 	
   var options = {
     dataType:  'json',
-    url: $(form).attr('action')+'?&ajaxify=1',
+    url: jQuery(form).attr('action')+'?&ajaxify=1',
     beforeSubmit: function(){
       if(typeof form_validations == "function" && !form_validations()) {
         return false;
@@ -14,10 +14,10 @@ function setupAjaxForm(form_id, form_validations){
     success: function(json){
       if (json.type == 'error') {
         var errs = json.errs;
-        $(form).find('span.error').remove();
-        $.each(errs, function (index, value){
+        jQuery(form).find('span.error').remove();
+        jQuery.each(errs, function (index, value){
           var content = "<span class='error'>"+value+'</em>';
-          $('#'+index).after('&nbsp;'+content);
+          jQuery('#'+index).after('&nbsp;'+content);
         })
         showMessage(json.message, json.type);
       } else {
@@ -26,5 +26,5 @@ function setupAjaxForm(form_id, form_validations){
     },
     error: function (XMLHttpRequest, textStatus, errorThrown) {}
   };
-  $(form).ajaxForm(options);
+  jQuery(form).ajaxForm(options);
 }
