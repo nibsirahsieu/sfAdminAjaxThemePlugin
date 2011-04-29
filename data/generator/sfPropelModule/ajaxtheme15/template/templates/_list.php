@@ -2,11 +2,7 @@
   [?php if (!$pager->getNbResults()): ?]
     <p>[?php echo __('No result', array(), 'sf_admin') ?]</p>
   [?php else: ?]
-<?php if ($this->hasBehavior('sortable')): ?>
-    <table cellspacing="0" id="ajaxThemeSortable">
-<?php else: ?>
     <table cellspacing="0">
-<?php endif; ?>
       <thead>
         <tr>
 <?php if ($this->configuration->getValue('list.batch_actions')): ?>
@@ -32,9 +28,13 @@
           </th>
         </tr>
       </tfoot>
+<?php if ($this->hasBehavior('sortable')): ?>
+      <tbody id="ajaxThemeSortable">
+<?php else: ?>
       <tbody>
+<?php endif; ?>
         [?php foreach ($pager->getResults() as $i => $<?php echo $this->getSingularName() ?>): $odd = fmod(++$i, 2) ? 'odd' : 'even' ?]
-          <tr class="sf_admin_row [?php echo $odd ?]">
+          <tr class="sf_admin_row [?php echo $odd ?]" id="[?php echo $<?php echo $this->getSingularName() ?>->getPrimaryKey() ?]">
 <?php if ($this->configuration->getValue('list.batch_actions')): ?>
             [?php include_partial('<?php echo $this->getModuleName() ?>/list_td_batch_actions', array('<?php echo $this->getSingularName() ?>' => $<?php echo $this->getSingularName() ?>, 'helper' => $helper)) ?]
 <?php endif; ?>
@@ -54,5 +54,8 @@ function checkAll()
 {
   var boxes = document.getElementsByTagName('input'); for(var index = 0; index < boxes.length; index++) { box = boxes[index]; if (box.type == 'checkbox' && box.className == 'sf_admin_batch_checkbox') box.checked = document.getElementById('sf_admin_list_batch_checkbox').checked } return true;
 }
+<?php if ($this->hasBehavior('sortable')): ?>
+setupSortableTable("[?php echo url_for('<?php echo $this->getModuleName() ?>/ajaxSortable') ?]");
+<?php endif; ?>
 /* ]]> */
 </script>

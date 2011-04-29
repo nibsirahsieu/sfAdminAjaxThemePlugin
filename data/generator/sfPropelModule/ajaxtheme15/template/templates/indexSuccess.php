@@ -3,6 +3,8 @@
 [?php use_javascript('<?php echo '/sfAdminAjaxThemePlugin/js/jquery.ba-bbq.js' ?>') ?]
 [?php use_javascript('<?php echo '/sfAdminAjaxThemePlugin/js/ajaxTheme-listl.js' ?>') ?]
 <?php if ($this->hasBehavior('sortable')): ?>
+[?php use_javascript('/sfAdminAjaxThemePlugin/js/jquery.tablednd.js') ?]
+[?php use_javascript('/sfAdminAjaxThemePlugin/js/ajaxTheme-sortable.js') ?]
 [?php use_stylesheet('/sfAdminAjaxThemePlugin/css/ajaxThemeSortable.css') ?]
 <?php endif; ?>
 

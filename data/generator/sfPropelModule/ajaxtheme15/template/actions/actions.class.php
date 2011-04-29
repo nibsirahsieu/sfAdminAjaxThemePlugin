@@ -73,5 +73,7 @@ abstract class <?php echo $this->getGeneratedModuleName() ?>Actions extends <?ph
 <?php include dirname(__FILE__).'/../../parts/moveUpAction.php' ?>
 
 <?php include dirname(__FILE__).'/../../parts/moveDownAction.php' ?>
+
+<?php include dirname(__FILE__).'/../../parts/ajaxSortableAction.php' ?>
 <?php endif ?>
 }
