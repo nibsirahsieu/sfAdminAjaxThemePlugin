@@ -5,7 +5,7 @@ This plugin comes with two themes, ajaxtheme for propel 1.4 (sfPropelPlugin) and
 
 ## Screenshot ##
 
-http://img7.imageshack.us/g/screenshot5j0.png/
+* [http://nibsirahsieu.com/2010/11/26/sfadminajaxthemeplugin-now-in-symfony-plugin-repository](http://nibsirahsieu.com/2010/11/26/sfadminajaxthemeplugin-now-in-symfony-plugin-repository)
 
 ## Installation ##
   * Add the jQuery libary plugin  in your `view.yml`
@@ -43,7 +43,7 @@ http://img7.imageshack.us/g/screenshot5j0.png/
 
         theme: ajaxtheme15 #ajaxtheme if you are using sfPropelPlugin
 
-  * By default, this plugin come with jquery form plugin [http://malsup.com/jquery/form/], if you already have it and want to use your own, add below to your `app.yml`. For example:
+  * By default, this plugin come with [jquery form plugin](http://malsup.com/jquery/form/), if you already have it and want to use your own, add below to your `app.yml`. For example:
 
         [yml]
         all:
@@ -52,3 +52,7 @@ http://img7.imageshack.us/g/screenshot5j0.png/
 That's it! You are ready now to use your new admin generator theme.
 
 Your feedback is welcome
+
+TODO :
+------
+    1. automatically ajaxify sortable table (if sortable behavior defined in the schema)
