@@ -25,7 +25,7 @@ abstract class <?php echo $this->getGeneratedModuleName() ?>Actions extends <?ph
 
     $this->helper = new <?php echo $this->getModuleName() ?>GeneratorHelper();
   }
-
+  
   public function collectFormErrors(sfFormFieldSchema $formFieldSchema, &$array)
   {
     foreach ($formFieldSchema as $key => $formField) {
@@ -39,7 +39,7 @@ abstract class <?php echo $this->getGeneratedModuleName() ?>Actions extends <?ph
     }
     return true;
   }
-  
+
 <?php include dirname(__FILE__).'/../../parts/indexAction.php' ?>
 
 <?php if ($this->configuration->hasFilterForm()): ?>
@@ -69,4 +69,9 @@ abstract class <?php echo $this->getGeneratedModuleName() ?>Actions extends <?ph
 <?php include dirname(__FILE__).'/../../parts/paginationAction.php' ?>
 
 <?php include dirname(__FILE__).'/../../parts/sortingAction.php' ?>
+<?php if ($this->hasBehavior('sortable')): ?>
+<?php include dirname(__FILE__).'/../../parts/moveUpAction.php' ?>
+
+<?php include dirname(__FILE__).'/../../parts/moveDownAction.php' ?>
+<?php endif ?>
 }

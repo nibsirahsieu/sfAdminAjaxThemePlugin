@@ -18,8 +18,38 @@ abstract class Base<?php echo ucfirst($this->getModuleName()) ?>GeneratorHelper 
   {
     $link = parent::linkToDelete($object, $param);
     if ($link != '') {
-      $link = str_replace('f.submit()', 'getJSONAjaxResponse(\'POST\', this.href, jQuery(f).serialize(), jQuery(\'#ajaxtheme_list\'))', $link);
+      $link = str_replace('f.submit()', 'getJSONAjaxResponse(\'POST\', this.href, jQuery(f).serialize(), ajaxThemeList.settings.$listContainer)', $link);
     }
     return $link;
+  }
+  
+  public function linkToMoveUp($object, $params)
+  {
+    if ($object->isFirst())
+    {
+      return '<li class="sf_admin_action_moveup disabled"><span>'.__($params['label'], array(), 'sf_admin').'</span></li>';
+}
+
+    if (empty($params['action']))
+    {
+      $params['action'] = 'moveUp';
+    }
+
+    return '<li class="sf_admin_action_moveup">'.link_to(__($params['label'], array(), 'sf_admin'), '<?php echo $this->params['route_prefix'] ?>/'.$params['action'].'?<?php echo $this->getPrimaryKeyUrlParams('$object', true); ?>).'</li>';
+  }
+
+  public function linkToMoveDown($object, $params)
+  {
+    if ($object->isLast())
+    {
+      return '<li class="sf_admin_action_movedown disabled"><span>'.__($params['label'], array(), 'sf_admin').'</span></li>';
+    }
+
+    if (empty($params['action']))
+    {
+      $params['action'] = 'moveDown';
+    }
+
+    return '<li class="sf_admin_action_movedown">'.link_to(__($params['label'], array(), 'sf_admin'), '<?php echo $this->params['route_prefix'] ?>/'.$params['action'].'?<?php echo $this->getPrimaryKeyUrlParams('$object', true); ?>).'</li>';
   }
 }
