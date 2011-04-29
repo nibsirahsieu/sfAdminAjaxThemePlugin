@@ -50,3 +50,10 @@
     showMessage('[?php echo $message ?]', '[?php echo $class ?]');
   </script>
 [?php endif; ?]
+<script type="text/javascript">
+jQuery(document).ready(function() {
+  ajaxThemeList.init();
+  showIndicator();
+});
+
+</script>
