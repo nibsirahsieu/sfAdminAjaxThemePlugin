@@ -53,29 +53,23 @@ That's it! You are ready now to use your new admin generator theme.
 
 Your feedback is welcome
 
-Note for old users
-------------------
-
+## Note for old users ##
 There several adjustments if you customize the two files below:
 
-indexSuccess.php
+  * `indexSuccess.php`. Copy the code below to the end of the file
 
-    Copy the code below to the end of indexSuccess.php
+        <script type="text/javascript">
+        jQuery(document).ready(function() {
+          ajaxThemeList.init();
+          showIndicator();
+        });
+        </script>
 
-    <script type="text/javascript">
-      jQuery(document).ready(function() {
-      ajaxThemeList.init();
-      showIndicator();
-    });
-    </script>
+  * `_filters.php`. Change the reset link by the code below (based on your routing collection):
 
-_filters.php
-
-    Change the reset link by the code below (based on your routing collection):
-
-    <?php $resetLink = link_to(__('Reset', array(), 'sf_admin'), 'product_collection', array('action' => 'filter'), array('query_string' => '_reset', 'method' => 'post')) ?>
-    <?php $resetLink = str_replace('f.submit()', 'window.location.hash = \'#\'; getHTMLAjaxResponse(\'POST\', this.href, jQuery(f).serialize(), ajaxThemeList.settings.$listContainer, ajaxThemeList.settings.$filterContainer)', $resetLink) ?>
-    <?php echo $resetLink ?>
+        <?php $resetLink = link_to(__('Reset', array(), 'sf_admin'), 'product_collection', array('action' => 'filter'), array('query_string' => '_reset', 'method' => 'post')) ?>
+        <?php $resetLink = str_replace('f.submit()', 'window.location.hash = \'#\'; getHTMLAjaxResponse(\'POST\', this.href, jQuery(f).serialize(), ajaxThemeList.settings.$listContainer, ajaxThemeList.settings.$filterContainer)', $resetLink) ?>
+        <?php echo $resetLink ?>
 
 TODO :
 ------
