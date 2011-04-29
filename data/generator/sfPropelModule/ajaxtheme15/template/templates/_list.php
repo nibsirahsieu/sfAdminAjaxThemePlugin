@@ -2,7 +2,11 @@
   [?php if (!$pager->getNbResults()): ?]
     <p>[?php echo __('No result', array(), 'sf_admin') ?]</p>
   [?php else: ?]
+<?php if ($this->hasBehavior('sortable')): ?>
+    <table cellspacing="0" id="ajaxThemeSortable">
+<?php else: ?>
     <table cellspacing="0">
+<?php endif; ?>
       <thead>
         <tr>
 <?php if ($this->configuration->getValue('list.batch_actions')): ?>

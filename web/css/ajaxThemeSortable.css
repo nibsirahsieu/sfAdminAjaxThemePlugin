@@ -1,0 +1,9 @@
+#sf_admin_container ul li.sf_admin_action_moveup a
+{
+  background: url(../images/arrow_top.gif) no-repeat 0 0;
+}
+
+#sf_admin_container ul li.sf_admin_action_movedown a
+{
+  background: url(../images/arrow_down.gif) no-repeat 0 0;
+}
