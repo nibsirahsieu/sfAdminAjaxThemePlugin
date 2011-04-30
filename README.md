@@ -54,7 +54,7 @@ That's it! You are ready now to use your new admin generator theme.
 Your feedback is welcome
 
 ## Note for old users ##
-There several adjustments if you customize the two files below:
+There several adjustments if you've customize the two following files:
 
   * `indexSuccess.php`. Copy the code below to the end of the file
 
@@ -73,4 +73,4 @@ There several adjustments if you customize the two files below:
 
 TODO :
 ------
-    1. automatically ajaxify sortable table (if sortable behavior defined in the schema)
+    <s>1. automatically ajaxify sortable table (if sortable behavior defined in the schema)</s>
