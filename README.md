@@ -73,4 +73,4 @@ There several adjustments if you've customize the two following files:
 
 TODO :
 ------
-    <s>1. automatically ajaxify sortable table (if sortable behavior defined in the schema)</s>
+    1. automatically ajaxify sortable table (if sortable behavior defined in the schema) ==> fixed
