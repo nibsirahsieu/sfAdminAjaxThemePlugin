@@ -1,8 +1,8 @@
 //based on http://www.tutorialswitch.com/web-development/quick-and-simple-ajax-forms-with-json-responses/
 
 function setupAjaxForm(form_id, form_validations){
-	var form = '#' + form_id;
-	
+  var form = '#' + form_id;
+
   var options = {
     dataType:  'json',
     url: jQuery(form).attr('action')+'?&ajaxify=1',
@@ -26,5 +26,12 @@ function setupAjaxForm(form_id, form_validations){
     },
     error: function (XMLHttpRequest, textStatus, errorThrown) {}
   };
+
+  jQuery(form).bind('form-pre-serialize', function(e) {
+    if (typeof tinyMCE != 'undefined') {
+      tinyMCE.triggerSave();
+    }
+  });
+
   jQuery(form).ajaxForm(options);
 }
