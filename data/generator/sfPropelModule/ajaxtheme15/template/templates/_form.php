@@ -32,8 +32,9 @@
 [?php endif; ?]
 <script type="text/javascript">
 /* <![CDATA[ */
-jQuery(function() {
-  new setupAjaxForm('<?php echo $this->getModuleName() ?>-form');
+jQuery(document).ready(function() {
+  setupAjaxForm('<?php echo $this->getModuleName() ?>-form');
+  showIndicator();
 });
 /* ]]> */
 </script>
